@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageUploader</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>ImageUploader</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn" value="upload">
+            </form>
+        </div>
+        <div class="row">
+            {% for images in img %}
+            <div class="col">
+                <div class="card">
+                    <img src="{{images.photo.url}}" alt="" height="200px">
+                    <div>
+                        <small>{{images.date}}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
