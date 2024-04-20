@@ -1,39 +1,54 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import ImageForm, LoginForm, RegisterForm
-from .models import Image, LoginModel, RegisterModel
+from .models import Image, RegisterModel
 from django.http import HttpResponse
 
-# Create your views here.
 def home(request):
+    if 'logged_in' not in request.session:
+        return redirect('register')  # Assuming 'register' is the name of your register URL
+
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-    form = ImageForm()
+            # Add any additional logic here after saving the form data
+    else:
+        form = ImageForm()
+        
     img = Image.objects.all()
-    return render(request, 'home.html', {'img':img, 'form':form})
-
-def set_session(request):
-    request.session['username'] = 'john_doe'
-    request.session['email'] = 'john@example.com'
-    return render(request, 'set_session.html')
+    return render(request, 'home.html', {'img': img, 'form': form})
 
 def get_session(request):
     username = request.session.get('username', 'Guest')
     email = request.session.get('email', 'guest@example.com')
     return render(request, 'get_session.html', {'username': username, 'email': email})
 
-def delete_session(request):
-    request.session.flush()
-    return render(request, 'delete_session.html')
-
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
-    form = LoginForm()
-    return render(request, 'login.html', {'form':form})
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            try:
+                user = RegisterModel.objects.get(username=username)
+                if user.password == password:
+                    # Password is correct, redirect to home
+                    request.session['logged_in'] = username
+                    return redirect('home')
+                else:
+                    # Password is incorrect
+                    return render(request, 'login.html', {'form': form, 'error_message': 'Incorrect password'})
+            except RegisterModel.DoesNotExist:
+                # Username does not exist
+                return render(request, 'login.html', {'form': form, 'error_message': 'Make sure you are registered'})
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
 def register(request):
+    if 'logged_in' in request.session:
+        request.session.flush()
+        
     error_message = None  # Initialize error message as None
     if request.method == 'POST':
         form = RegisterForm(request.POST)
