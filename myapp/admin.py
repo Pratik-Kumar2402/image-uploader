@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['id','photo','date']
+    
+admin.site.register(RegisterModel)

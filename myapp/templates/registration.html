@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+
+<body>
+    <h1>Registration Page</h1>
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+    <form action="" method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="submit">
+    </form>
+    {% if username and email %}
+    <div>
+        <h2>User Information</h2>
+        <p><strong>Username:</strong> {{ username }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+    </div>
+    {% endif %}
+</body>
+
+</html>
