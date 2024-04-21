@@ -125,4 +125,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/objects/'
 MEDIA_ROOT = BASE_DIR / 'objects'
 
-# SESSION_COOKIE_AGE = 15
+
+SESSION_COOKIE_AGE = 1800 # 30mins

@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Image(models.Model):
-    # username = models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=30, default='guest')
     photo = models.ImageField(upload_to='media')
     date = models.DateTimeField(auto_now_add=True)
 

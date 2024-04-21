@@ -5,13 +5,16 @@ from django.http import HttpResponse
 
 def home(request):
     if 'logged_in' not in request.session:
-        return redirect('register')  # Assuming 'register' is the name of your register URL
+        return redirect('register')
 
+    username = request.session.get('logged_in')
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
+        form_data = request.POST.copy()
+        form_data['username'] = username
+        form = ImageForm(form_data, request.FILES)
         if form.is_valid():
+            print(form_data['username'])
             form.save()
-            # Add any additional logic here after saving the form data
     else:
         form = ImageForm()
         
@@ -19,9 +22,8 @@ def home(request):
     return render(request, 'home.html', {'img': img, 'form': form})
 
 def get_session(request):
-    username = request.session.get('username', 'Guest')
-    email = request.session.get('email', 'guest@example.com')
-    return render(request, 'get_session.html', {'username': username, 'email': email})
+    username = request.session.get('logged_in', 'Guest')
+    return render(request, 'get_session.html', {'username': username})
 
 def login(request):
     if request.method == 'POST':
