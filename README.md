@@ -42,3 +42,19 @@ Start the server
 ```bash
   python manage.py runserver
 ```
+
+For creating superuser for managing database
+
+```bash
+  python manage.py createsuperuser
+```
+
+- Give name as 'admin' or whatever you like
+- Give email or leave it blank(optional)
+- Give password of your choice or for simplicity let it be 'admin'
+
+Then go to server and typing in /admin after the localhost,
+example: 
+```bash
+  http://127.0.0.1:8000/admin/
+```
