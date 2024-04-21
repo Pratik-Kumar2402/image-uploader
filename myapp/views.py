@@ -13,13 +13,13 @@ def home(request):
         form_data['username'] = username
         form = ImageForm(form_data, request.FILES)
         if form.is_valid():
-            print(form_data['username'])
+            # print(form_data['username'])
             form.save()
     else:
         form = ImageForm()
         
     img = Image.objects.all()
-    return render(request, 'home.html', {'img': img, 'form': form})
+    return render(request, 'home.html', {'img': img, 'form': form, 'username': username})
 
 def get_session(request):
     username = request.session.get('logged_in', 'Guest')

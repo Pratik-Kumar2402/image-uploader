@@ -1,29 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImageUploader</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .form-section form p {
+            margin-bottom: 15px;
+            /* Add some space between form fields */
+        }
+
+        .form-section form label {
+            display: block;
+            /* Make labels block elements to stack them vertically */
+            font-weight: bold;
+            /* Make labels bold for emphasis */
+        }
+
+        .form-section form input[type="text"],
+        .form-section form input[type="file"],
+        .form-section form textarea {
+            width: 100%;
+            /* Make form fields take up full width */
+            padding: 8px;
+            /* Add padding to form fields */
+            border: 1px solid #ccc;
+            /* Add a border to form fields */
+            border-radius: 5px;
+            /* Add rounded corners to form fields */
+            box-sizing: border-box;
+            /* Ensure padding and border are included in width */
+        }
+
+        .form-section form input[type="file"] {
+            width: 100%;
+            /* Make the file input take up full width */
+            padding: 8px;
+            /* Add padding to the file input */
+            border: 1px solid #ccc;
+            /* Add a border to the file input */
+            border-radius: 5px;
+            /* Add rounded corners to the file input */
+            box-sizing: border-box;
+            /* Ensure padding and border are included in width */
+            background-color: #fff;
+            /* Set background color */
+            cursor: pointer;
+            /* Add cursor pointer on hover */
+        }
+
+        /* Style for file input label (button appearance) */
+        .form-section form input[type="file"]::-webkit-file-upload-button {
+            padding: 10px 20px;
+            /* Add padding to the file input label */
+            background-color: #007bff;
+            /* Set background color */
+            color: #fff;
+            /* Set text color */
+            border: none;
+            /* Remove border */
+            border-radius: 5px;
+            /* Add rounded corners */
+            cursor: pointer;
+            /* Add cursor pointer on hover */
+        }
+
+        /* Style for file input label on hover */
+        .form-section form input[type="file"]::-webkit-file-upload-button:hover {
+            background-color: #0056b3;
+            /* Darken background color on hover */
+        }
+
+        .form-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-section h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-section p {
+            border: 1px solid;
+            color: dimgray;
+            margin-bottom: 25px;
+            text-align: center;
+            justify-content: space-between
+        }
+
+        .form-section img {
+            color: #fff;
+        }
+
+        .form-section .btn {
+            margin-top: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1 0 25%;
+            padding: 10px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .image-info {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <div>
+        <div class="form-section">
             <h1>ImageUploader</h1>
+            <p>Welcome, {{ username }}</p>
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_p}}
-                <input type="submit" class="btn" value="upload">
-                <a href="/register">Logout</a>
+                <div class="">
+                    <input type="submit" class="btn" value="Upload">
+                    <a href="/register" class="btn">Logout</a>
+                </div>
             </form>
         </div>
         <div class="row">
-            {% for images in img %}
+            {% for image in img %}
             <div class="col">
                 <div class="card">
-                    <img src="{{images.photo.url}}" alt="" height="200px">
-                    <div>
-                        <small>{{images.date}}</small>
-                        <small>{{images.username}}</small>
+                    <a href="{{ image.photo.url }}" target="_blank">
+                        <img src="{{ image.photo.url }}" alt="" height="200px">
+                    </a>
+                    <div class="image-info">
+                        <small>{{ image.date }}</small>
+                        <small>{{ image.username }}</small>
                     </div>
                 </div>
             </div>
@@ -31,4 +214,5 @@
         </div>
     </div>
 </body>
+
 </html>
