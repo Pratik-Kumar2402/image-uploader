@@ -13,70 +13,33 @@
             box-sizing: border-box;
         }
 
-        .form-section form p {
-            margin-bottom: 15px;
-            /* Add some space between form fields */
-        }
-
-        .form-section form label {
-            display: block;
-            /* Make labels block elements to stack them vertically */
-            font-weight: bold;
-            /* Make labels bold for emphasis */
-        }
-
         .form-section form input[type="text"],
-        .form-section form input[type="file"],
-        .form-section form textarea {
-            width: 100%;
-            /* Make form fields take up full width */
-            padding: 8px;
-            /* Add padding to form fields */
-            border: 1px solid #ccc;
-            /* Add a border to form fields */
-            border-radius: 5px;
-            /* Add rounded corners to form fields */
-            box-sizing: border-box;
-            /* Ensure padding and border are included in width */
+        .form-section form label {
+            visibility: hidden;
+            visibility: collapse;
         }
 
-        .form-section form input[type="file"] {
+        .form-section form input[type="file"]{
             width: 100%;
-            /* Make the file input take up full width */
             padding: 8px;
-            /* Add padding to the file input */
             border: 1px solid #ccc;
-            /* Add a border to the file input */
             border-radius: 5px;
-            /* Add rounded corners to the file input */
             box-sizing: border-box;
-            /* Ensure padding and border are included in width */
             background-color: #fff;
-            /* Set background color */
             cursor: pointer;
-            /* Add cursor pointer on hover */
         }
 
-        /* Style for file input label (button appearance) */
         .form-section form input[type="file"]::-webkit-file-upload-button {
             padding: 10px 20px;
-            /* Add padding to the file input label */
             background-color: #007bff;
-            /* Set background color */
             color: #fff;
-            /* Set text color */
             border: none;
-            /* Remove border */
             border-radius: 5px;
-            /* Add rounded corners */
             cursor: pointer;
-            /* Add cursor pointer on hover */
         }
 
-        /* Style for file input label on hover */
         .form-section form input[type="file"]::-webkit-file-upload-button:hover {
             background-color: #0056b3;
-            /* Darken background color on hover */
         }
 
         .form-section {
@@ -98,12 +61,9 @@
             align-items: center;
         }
 
-        .form-section p {
-            border: 1px solid;
+        .form-section h2 {
             color: dimgray;
-            margin-bottom: 25px;
             text-align: center;
-            justify-content: space-between
         }
 
         .form-section img {
@@ -123,14 +83,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        form {
-            margin-bottom: 20px;
         }
 
         .btn {
@@ -187,7 +139,7 @@
     <div class="container">
         <div class="form-section">
             <h1>ImageUploader</h1>
-            <p>Welcome, {{ username }}</p>
+            <h2>Welcome, {{ username }}</h2>
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_p}}
