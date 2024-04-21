@@ -1,3 +1,10 @@
+# Image Blog Post
+
+Image uploader is a vital component of many web applications, enabling users to seamlessly upload images to the platform. It serves various purposes across diverse domains, including social media, e-commerce, content management systems, and more. Typically integrated into forms, image uploaders facilitate the submission of visual content, enhancing user engagement and interaction.
+
+
+
+
 ## Run Locally
 
 Clone the project
