@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>About Us</title>
 
     <style>
         * {
@@ -11,9 +12,63 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .info-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .info-section h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .info-section p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
+
 <body>
-    {% include 'navbar.html'%}
+    {% include 'navbar.html' %}
+    <div class="container">
+        <div class="info-section">
+            <h1>About Us</h1>
+            <p>Welcome to ImageBlogPost, your premier destination for sharing and enjoying high-quality image content. Founded in 2024, we aim to provide a platform where photography enthusiasts and professionals alike can post and discuss their work in a supportive environment.</p>
+            <p>Our mission is to empower creators by providing tools that help them share their vision with a global audience and to foster a community where feedback and discussion help everyone grow and improve their skills.</p>
+            <p>Whether you're here to discover new photography or to share your own, we're thrilled to have you as part of our community.</p>
+        </div>
+    </div>
 </body>
+
 </html>
