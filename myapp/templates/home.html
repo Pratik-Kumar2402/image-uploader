@@ -99,6 +99,10 @@
             background-color: #0056b3;
         }
 
+        .home-btn a{
+            font-size: 0.9rem;
+        }
+
         .row {
             display: flex;
             flex-wrap: wrap;
@@ -124,6 +128,22 @@
             border-radius: 5px;
         }
 
+        .delete-button {
+            background-color: #4f4e4e;
+            border: none;
+            margin: 3px;
+            padding: 3px;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #1c1c1c;
+        }
+
         .image-info {
             margin-top: 10px;
             display: flex;
@@ -144,7 +164,7 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_p}}
-                <div class="">
+                <div class="home-btn">
                     <input type="submit" class="btn" value="Upload">
                     <a href="/register" class="btn">Logout</a>
                 </div>
@@ -154,6 +174,7 @@
             {% for image in img %}
             <div class="col">
                 <div class="card">
+                    <button class="delete-button">X</button>
                     <a href="{{ image.photo.url }}" target="_blank">
                         <img src="{{ image.photo.url }}" alt="" height="200px">
                     </a>

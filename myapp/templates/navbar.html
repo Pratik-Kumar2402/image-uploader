@@ -45,10 +45,6 @@
         <div>
             <h3>Image Blog Post</h3>
         </div>
-        <!-- <div>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        </div> -->
         <div>
             {% if not is_logged_in %}
                 <li><a href="{% url 'login' %}">Login</a></li>
