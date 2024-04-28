@@ -13,7 +13,7 @@
             box-sizing: border-box;
         }
 
-        body {
+        .reg-body {
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,7 +22,7 @@
             font-family: Arial, sans-serif;
         }
 
-        .card {
+        .reg-body .card {
             width: 25rem;
             height: auto;
             background-color: #fff;
@@ -32,28 +32,28 @@
             text-align: center;
         }
 
-        h1 {
+        .reg-body h1 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: #333;
         }
 
-        p {
+        .reg-body p {
             color: dimgray;
             margin-bottom: 25px;
         }
 
-        .error-message {
+        .reg-body .error-message {
             color: red;
         }
 
-        form {
+        .reg-body form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        input[type="text"],
+        .reg-body input[type="text"],
         input[type="password"],
         input[type="email"] {
             width: 100%;
@@ -63,7 +63,7 @@
             border-radius: 5px;
         }
 
-        input[type="submit"] {
+        .reg-body input[type="submit"] {
             width: 50%;
             padding: 10px;
             border: none;
@@ -74,11 +74,11 @@
             transition: background-color 0.3s;
         }
 
-        input[type="submit"]:hover {
+        .reg-body input[type="submit"]:hover {
             background-color: #0056b3;
         }
 
-        a {
+        .reg-body a {
             padding-top: 10px;
             text-decoration: none;
             color: #007bff;
@@ -86,11 +86,11 @@
             font-size: 0.9rem;
         }
 
-        a:hover {
+        .reg-body a:hover {
             text-decoration: underline;
         }
 
-        .success-message {
+        .reg-body .success-message {
             margin-top: 20px;
             color: green;
         }
@@ -98,22 +98,25 @@
 </head>
 
 <body>
-    <div class="card">
-        <h1>Registration Page</h1>
-        {% if error_message %}
-        <p class="error-message">{{ error_message }}</p>
-        {% endif %}
-        <form action="" method="post">
-            {{form.as_p}}
-            {% csrf_token %}
-            <input type="submit" value="Submit">
-            <a href="/login">Already have an account? Login here</a>
-        </form>
-        {% if username %}
-        <div class="success-message">
-            <h2><strong>{{ username }}</strong> username successfully registered</h2>
+    {% include 'navbar.html'%}
+    <div class="reg-body">
+        <div class="card">
+            <h1>Registration Page</h1>
+            {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+            <form action="" method="post">
+                {{form.as_p}}
+                {% csrf_token %}
+                <input type="submit" value="Submit">
+                <a href="/login">Already have an account? Login here</a>
+            </form>
+            {% if username %}
+            <div class="success-message">
+                <h2><strong>{{ username }}</strong> username successfully registered</h2>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 </body>
 

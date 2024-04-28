@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImageUploader</title>
+    <title>ImageBlogPost</title>
 
     <style>
         * {
@@ -19,7 +19,7 @@
             visibility: collapse;
         }
 
-        .form-section form input[type="file"]{
+        .form-section form input[type="file"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
@@ -136,9 +136,10 @@
 </head>
 
 <body>
+    {% include 'navbar.html'%}
     <div class="container">
         <div class="form-section">
-            <h1>ImageUploader</h1>
+            <h1>ImageBlogPost</h1>
             <h2>Welcome, {{ username }}</h2>
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

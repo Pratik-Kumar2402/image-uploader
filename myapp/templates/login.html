@@ -13,7 +13,7 @@
             box-sizing: border-box;
         }
 
-        body {
+        .login-body {
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,7 +22,7 @@
             font-family: Arial, sans-serif;
         }
 
-        .card {
+        .login-body .card {
             width: 25rem;
             height: auto;
             background-color: #fff;
@@ -32,28 +32,28 @@
             text-align: center;
         }
 
-        h1 {
+        .login-body h1 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: #333;
         }
 
-        p {
+        .login-body p {
             color: dimgray;
             margin-bottom: 30px;
         }
 
-        .error-message {
+        .login-body .error-message {
             color: red;
         }
 
-        form {
+        .login-body form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        input[type="text"],
+        .login-body input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 10px;
@@ -62,7 +62,7 @@
             border-radius: 5px;
         }
 
-        input[type="submit"] {
+        .login-body input[type="submit"] {
             width: 50%;
             padding: 10px;
             border: none;
@@ -73,35 +73,38 @@
             transition: background-color 0.3s;
         }
 
-        input[type="submit"]:hover {
+        .login-body input[type="submit"]:hover {
             background-color: #0056b3;
         }
 
-        a {
+        .login-body a {
             text-decoration: none;
             color: #007bff;
             margin-top: 10px;
             font-size: 0.9rem;
         }
 
-        a:hover {
+        .login-body a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-    <div class="card">
-        <h1>Login Page</h1>
-        {% if error_message %}
-        <p class="error-message">{{ error_message }}</p>
-        {% endif %}
-        <form action="" method="post">
-            {{form.as_p}}
-            {% csrf_token %}
-            <input type="submit" value="Submit">
-            <a href="/register">Don't have an account? Register here</a>
-        </form>
+    {% include 'navbar.html'%}
+    <div class="login-body">
+        <div class="card">
+            <h1>Login Page</h1>
+            {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+            <form action="" method="post">
+                {{form.as_p}}
+                {% csrf_token %}
+                <input type="submit" value="Submit">
+                <a href="/register">Don't have an account? Register here</a>
+            </form>
+        </div>
     </div>
 </body>
 

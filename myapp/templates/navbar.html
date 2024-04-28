@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .navbar {
+            font-family: Arial, sans-serif;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar li {
+            float: left;
+        }
+
+        .navbar h3 {
+            padding: 14px 16px;
+            color: white;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar li a:hover {
+            background-color: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="navbar">
+        <div>
+            <li><a href="{% url 'home' %}">Home</a></li>
+        </div>
+        <div>
+            <h3>Image Blog Post</h3>
+        </div>
+        <!-- <div>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        </div> -->
+        <div>
+            {% if not is_logged_in %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% else %}
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            {% endif %}
+        </div>
+    </ul>
+</body>
+
+</html>
